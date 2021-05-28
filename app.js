@@ -2,6 +2,10 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const db = require("./models");
+require('dotenv').config();
+const nodemailer = require("nodemailer");
+
+
 
 app.use(express.json());
 app.use(

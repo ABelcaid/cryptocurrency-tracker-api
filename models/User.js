@@ -5,6 +5,7 @@ module.exports = (sequelize,DataTypes) => {
 
         email: DataTypes.STRING,
         name: DataTypes.STRING,
+        photoUrl :DataTypes.STRING,
         solde: {
             type : DataTypes.FLOAT,
             defaultValue : 1000

@@ -6,12 +6,46 @@ const { User } = require('../models');
 
         try {
 
-               await User.create({
-                    email : req.body.email,
-                    name : req.body.name,
+                let email = req.body.email;
+                let name = req.body.name;
+                let photoUrl = req.body.photoUrl
+
+            // const existingUser = await User.findOne({ email: email });
+
+            const existingUser = await User.findOne({
+                where: {
+                    email: email,
+                },
+              });
+
+
+         
+
+            if (existingUser  == null) {
+
+                let user =  await User.create({
+                    email : email,
+                    name :name,
+                    photoUrl: photoUrl,
                 })
 
-                res.send("user added")
+                res.send(user)
+
+                console.log('&&&&&&&&&&&&&&&&&&&&&&&&&');
+                console.log(user);
+                console.log('&&&&&&&&&&&&&&&&&&&&&&&&&');
+                
+            }else {
+
+                console.log('"""""""""""""""""""""""""""""""""""""');
+                console.log(existingUser);
+                console.log('"""""""""""""""""""""""""""""""""""""');
+
+                res.send(existingUser);
+
+            }
+
+             
                 
             }
             catch (err) {
